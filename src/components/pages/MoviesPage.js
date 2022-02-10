@@ -1,53 +1,55 @@
-// import { Outlet } from 'react-router-dom';
-// import React, { useState, useEffect } from 'react';
-// import ApiService from 'components/service/movies-api';
+import React, { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import ApiService from 'components/service/movies-api';
+import SearchForm from 'components/SearchForm/SearchForm';
+import SearchMovieLink from 'components/SearchMovieLink/SearchMovieLink';
+import { FormatMovie } from 'components/service/GetFormatData';
+import Loader from 'components/Loader/Loader';
 
-// const newApi = new ApiService();
+const newApi = new ApiService();
 
 export default function MoviesPages() {
-  //   const [movieName, setMovieName] = useState('');
-  //   const [movie, setMovie] = useState(null);
-  //   const [error, setError] = useState(null);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [movieName, setMovieName] = useState('');
+  const [movies, setMovies] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  searchParams.get('query');
 
-  // useEffect(() => {
-  //   newApi.query = movieName;
-  //   newApi
-  //     .fetchMovieDetails(movieName)
-  //     .then(results => setMovie(results))
-  //     .catch(error => setError(error));
-  // }, [movieName]);
+  useEffect(() => {
+    if (movieName) {
+      setLoading(true);
+      setTimeout(() => {
+        setMovies(null);
+        newApi
+          .fetchMovieForQuery(movieName)
+          .then(({ results }) => {
+            const formats = FormatMovie(results);
+            setMovies(formats);
+            setSearchParams({ query: movieName });
+          })
+          .catch(error => setError(error))
+          .finally(setLoading(false));
+      }, 100);
+    }
+  }, [movieName, setSearchParams]);
 
-  // const handleSubmit = e => {
-  //   e.preventDefault();
-  //   if (movieName.trim() === '') {
-  //     return alert(
-  //       `Sorry,there are no pictures on request ${movieName}. Please try again`
-  //     );
-  //   }
-  //   fetchMovieForValue(movieName);
-  //   setMovieName('');
-  // };
-
-  // const fetchMovieForValue = movieName => {
-  //   setMovieName();
-  //   newApi.query = movieName;
-  // };
+  const handleFormSubmit = name => {
+    setMovieName(name);
+  };
 
   return (
     <>
-      <form>
-        <p>Find movie by name</p>
-        <input
-          autoComplete="off"
-          placeholder="Enter a movie name"
-          type="text"
-          name="filter"
-          // onChange={e => {
-          //   setMovieName(e.target.value.toLowerCase());
-          // }}
-        />
-        <button type="submit">Search</button>
-      </form>
+      {<SearchForm onSubmit={handleFormSubmit} />}
+      {loading && <Loader />}
+      <ul>
+        {!loading &&
+          movies &&
+          movies.map(movie => <SearchMovieLink key={movie.id} movie={movie} />)}
+      </ul>
+      {!loading && error && (
+        <div>Sorry, there was an error, please try again</div>
+      )}
     </>
   );
 }

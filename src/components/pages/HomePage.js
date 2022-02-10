@@ -1,34 +1,45 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import ApiService from '../service/movies-api';
+import TrendingMovieLink from 'components/TrendingMovieLink/TrendingMovieLink';
+import { FormatMovie } from 'components/service/GetFormatData';
+import Loader from 'components/Loader/Loader';
 
 const newApi = new ApiService();
 
 export default function HomePages() {
   const [movies, setMovies] = useState(null);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    newApi
-      .fetchTrendingMovies()
-      .then(({ results }) => setMovies(results))
-      .catch(error => setError(error));
+    setLoading(true);
+    setTimeout(() => {
+      newApi
+        .fetchTrendingMovies()
+        .then(({ results }) => {
+          const formats = FormatMovie(results);
+          setMovies(formats);
+        })
+        .catch(error => setError(error))
+        .finally(setLoading(false));
+    }, 100);
   }, []);
 
   return (
-    <div>
-      <h1>Trending today</h1>
-      <ul>
-        {movies &&
-          movies.map(({ id, title }) => {
-            return (
-              <li key={id}>
-                <Link to={`movies/${id}`}>{title}</Link>
-              </li>
-            );
-          })}
-      </ul>
-      {error && <div>Not Found</div>}
-    </div>
+    <>
+      <div>
+        <h1>Trending today</h1>
+        {loading && <Loader />}
+        <ul>
+          {movies &&
+            movies.map(movie => (
+              <TrendingMovieLink key={movie.id} movie={movie} />
+            ))}
+        </ul>
+      </div>
+      {!loading && error && (
+        <div>Sorry, there was an error, please try again</div>
+      )}
+    </>
   );
 }

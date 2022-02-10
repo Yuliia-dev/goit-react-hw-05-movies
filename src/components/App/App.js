@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import Navigation from 'components/Navigation/Navigation';
 import HomePages from 'components/pages/HomePage';
 import MoviesPages from 'components/pages/MoviesPage';
@@ -18,6 +18,7 @@ export default function App() {
           <Route path="cast" element={<Cast />} />
           <Route path="reviews" element={<Reviews />} />
         </Route>
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </>
   );
