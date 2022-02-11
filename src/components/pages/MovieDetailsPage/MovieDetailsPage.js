@@ -1,9 +1,10 @@
-import { useParams, Link, useLocation } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import ApiService from 'components/service/movies-api';
-import { FormatMovieDetailsPage } from '../service/GetFormatData';
+import { FormatMovieDetailsPage } from '../../service/GetFormatData';
 import MovieDetailsPageMarkup from 'components/MovieDetailsPageMarkup/MovieDetailsPageMarkup';
 import Loader from 'components/Loader/Loader';
+import { BackLink } from './MovieDetailsPage.styled';
 
 const newApi = new ApiService();
 
@@ -31,7 +32,7 @@ export default function MovieDetailsPages() {
   return (
     <>
       {loading && <Loader />}
-      <Link to={location?.state?.from ?? '/'}>Back</Link>
+      <BackLink to={location?.state?.from ?? '/'}>⬅Back</BackLink>
       {!loading && movie && <MovieDetailsPageMarkup movie={movie} />}
       {!loading && error && (
         <div>Sorry, there was an error, please try again</div>

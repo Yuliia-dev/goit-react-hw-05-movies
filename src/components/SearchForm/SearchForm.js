@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Form, TitleForm, InputForm, ButtonForm } from './SearchForm.styled';
 
 export default function SearchForm({ onSubmit }) {
   const [movieName, setMovieName] = useState('');
@@ -12,18 +13,20 @@ export default function SearchForm({ onSubmit }) {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <p>Find movie by name</p>
-        <input
-          autoComplete="off"
-          placeholder="Enter a movie name"
-          type="text"
-          name="movieName"
-          value={movieName}
-          onChange={e => setMovieName(e.target.value.toLowerCase())}
-        />
-        <button type="submit">Search</button>
-      </form>
+      <Form onSubmit={handleSubmit}>
+        <TitleForm>Find movie by name</TitleForm>
+        <div>
+          <InputForm
+            autoComplete="off"
+            placeholder="Enter a movie name"
+            type="text"
+            name="movieName"
+            value={movieName}
+            onChange={e => setMovieName(e.target.value.toLowerCase())}
+          />
+          <ButtonForm type="submit">Search</ButtonForm>
+        </div>
+      </Form>
     </>
   );
 }

@@ -2,6 +2,7 @@ import ApiService from 'components/service/movies-api';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import ReviewsList from 'components/ReviewsList/ReviewsList';
+import { ContainerReviews } from './Reviews.styled';
 
 const newApi = new ApiService();
 
@@ -21,10 +22,24 @@ export default function Reviews() {
 
   return (
     <>
-      {reviews &&
-        reviews.map(review => <ReviewsList key={review.id} review={review} />)}
+      <div>
+        <ul>
+          {reviews &&
+            reviews.map(review => (
+              <ReviewsList key={review.id} review={review} />
+            ))}
+        </ul>
+      </div>
+
       {!error && reviews && reviews.length === 0 && (
-        <div>Sorry, there was an error, please try again</div>
+        <ContainerReviews>
+          We don't have any reviews for this movie
+        </ContainerReviews>
+      )}
+      {error && (
+        <ContainerReviews>
+          Sorry, there was an error, please try again
+        </ContainerReviews>
       )}
     </>
   );

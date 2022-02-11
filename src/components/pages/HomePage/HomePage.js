@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
-import ApiService from '../service/movies-api';
-import TrendingMovieLink from 'components/TrendingMovieLink/TrendingMovieLink';
+import ApiService from '../../service/movies-api';
+import TrendingMovieItem from 'components/TrendingMovieItem/TrendingMovieItem';
 import { FormatMovie } from 'components/service/GetFormatData';
 import Loader from 'components/Loader/Loader';
+import { Container, Title, MovieList } from './HomePage.styled';
 
 const newApi = new ApiService();
 
@@ -27,16 +28,16 @@ export default function HomePages() {
 
   return (
     <>
-      <div>
-        <h1>Trending today</h1>
+      <Container>
+        <Title>Trending today</Title>
         {loading && <Loader />}
-        <ul>
+        <MovieList>
           {movies &&
             movies.map(movie => (
-              <TrendingMovieLink key={movie.id} movie={movie} />
+              <TrendingMovieItem key={movie.id} movie={movie} />
             ))}
-        </ul>
-      </div>
+        </MovieList>
+      </Container>
       {!loading && error && (
         <div>Sorry, there was an error, please try again</div>
       )}

@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import ApiService from 'components/service/movies-api';
 import SearchForm from 'components/SearchForm/SearchForm';
-import SearchMovieLink from 'components/SearchMovieLink/SearchMovieLink';
+import SearchMovieItem from 'components/SearchMovieItem/SearchMovieItem';
 import { FormatMovie } from 'components/service/GetFormatData';
 import Loader from 'components/Loader/Loader';
+import { Container, MovieList } from '../HomePage/HomePage.styled';
 
 const newApi = new ApiService();
 
@@ -42,11 +43,15 @@ export default function MoviesPages() {
     <>
       {<SearchForm onSubmit={handleFormSubmit} />}
       {loading && <Loader />}
-      <ul>
-        {!loading &&
-          movies &&
-          movies.map(movie => <SearchMovieLink key={movie.id} movie={movie} />)}
-      </ul>
+      <Container>
+        <MovieList>
+          {!loading &&
+            movies &&
+            movies.map(movie => (
+              <SearchMovieItem key={movie.id} movie={movie} />
+            ))}
+        </MovieList>
+      </Container>
       {!loading && error && (
         <div>Sorry, there was an error, please try again</div>
       )}

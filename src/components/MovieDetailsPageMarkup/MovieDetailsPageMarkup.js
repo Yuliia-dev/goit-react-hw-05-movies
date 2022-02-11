@@ -1,23 +1,56 @@
-import { Link, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
+import {
+  ContainerSection,
+  CardMovie,
+  MovieImg,
+  MovieName,
+  MovieClause,
+  MovieInfo,
+  GenresList,
+  GenresItem,
+  InfoContainer,
+  InfoTitle,
+  InfoList,
+  InfoItem,
+  InfoLink,
+} from './MovieDetailsPageMarkup.styled';
+
 export default function MovieDetailsPageMarkup({ movie }) {
   const { title, poster_path, vote_average, overview, genres } = movie;
 
   return (
-    <div>
-      <img src={poster_path} alt={title} height="500" width="300" />
-      <h1> {title}</h1>
-      <p>User Score: {vote_average}</p>
-      <h2>Overview</h2>
-      <p>{overview}</p>
-      <h2>Genres</h2>
-      <ul>
-        {genres.map(({ id, name }) => {
-          return <li key={id}>{name}</li>;
-        })}
-      </ul>
-      <Link to="cast">Actors</Link>
-      <Link to="reviews">Reviews</Link>
+    <ContainerSection>
+      <CardMovie>
+        <MovieImg src={poster_path} alt={title} height="500" width="300" />
+        <div>
+          <MovieName> {title}</MovieName>
+          <MovieClause>User Score: </MovieClause>
+          <MovieInfo>{vote_average}%</MovieInfo>
+          <MovieClause>Overview:</MovieClause>
+          <MovieInfo>{overview}</MovieInfo>
+          <MovieClause>Genres:</MovieClause>
+          <GenresList>
+            {genres.map(({ id, name }) => {
+              return <GenresItem key={id}>{name}</GenresItem>;
+            })}
+          </GenresList>
+        </div>
+      </CardMovie>
+      <InfoContainer>
+        <InfoTitle>Additional information</InfoTitle>
+        <div>
+          <InfoList>
+            <InfoItem>
+              <InfoLink to="cast">Actors</InfoLink>
+            </InfoItem>
+            <InfoItem>
+              <InfoLink to="reviews">Reviews</InfoLink>
+            </InfoItem>
+          </InfoList>
+        </div>
+      </InfoContainer>
+
       <Outlet />
-    </div>
+    </ContainerSection>
   );
 }

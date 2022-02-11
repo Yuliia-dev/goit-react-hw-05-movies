@@ -1,11 +1,11 @@
 import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import Navigation from 'components/Navigation/Navigation';
-import HomePages from 'components/pages/HomePage';
-import MoviesPages from 'components/pages/MoviesPage';
-import MovieDetailsPages from 'components/pages/MovieDetailsPage';
-import Cast from 'components/pages/Cast';
-import Reviews from 'components/pages/Reviews';
+import HomePages from 'components/pages/HomePage/HomePage';
+import MoviesPages from 'components/pages/MoviePage/MoviesPage';
+import MovieDetailsPages from 'components/pages/MovieDetailsPage/MovieDetailsPage';
+import Cast from 'components/pages/Cast/Cast';
+import Reviews from 'components/pages/Reviews/Reviews';
 
 export default function App() {
   return (

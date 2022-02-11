@@ -1,14 +1,12 @@
+import { ReviewsItem, ReviewsAuthor, ReviewsText } from './ReviewsList.styled';
+
 export default function ReviewsList({ review }) {
   const { author, content } = review;
 
   return (
-    <div>
-      <ul>
-        <li>
-          <h2> {author}</h2>
-          <p>{content}</p>
-        </li>
-      </ul>
-    </div>
+    <ReviewsItem>
+      <ReviewsAuthor> {author}</ReviewsAuthor>
+      <ReviewsText>{content}</ReviewsText>
+    </ReviewsItem>
   );
 }

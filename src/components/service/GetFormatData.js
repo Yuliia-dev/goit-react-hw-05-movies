@@ -37,7 +37,7 @@ export function FormatMovieDetailsPage({
     poster_path: poster_path
       ? `https://image.tmdb.org/t/p/w300/${poster_path}`
       : 'https://webhostingmedia.net/wp-content/uploads/2018/01/http-error-404-not-found.png',
-    vote_average: vote_average,
+    vote_average: vote_average * 10,
     overview: overview,
     genres: genres,
   };

@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import CastList from 'components/CastList/CastList';
 import { FormatCast } from 'components/service/GetFormatData';
+import { CardActors, ActorList } from './Cast.styled';
 
 const newApi = new ApiService();
 
@@ -23,7 +24,13 @@ export default function Cast() {
 
   return (
     <>
-      {actors && actors.map(actor => <CastList key={actor.id} actor={actor} />)}
+      <CardActors>
+        <ActorList>
+          {actors &&
+            actors.map(actor => <CastList key={actor.id} actor={actor} />)}
+        </ActorList>
+      </CardActors>
+
       {error && <div>Sorry, there was an error, please try again</div>}
     </>
   );

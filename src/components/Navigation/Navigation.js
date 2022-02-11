@@ -1,16 +1,4 @@
-import { NavLink } from 'react-router-dom';
-import styled from 'styled-components';
-
-const Nav = styled.nav`
-  display: flex;
-  gap: 20px;
-  padding: 20px;
-`;
-const NavLinkPage = styled(NavLink)`
-  &.active {
-    color: orange;
-  }
-`;
+import { Nav, NavLinkPage } from './Navigation.styled';
 
 export default function Navigation() {
   return (
@@ -19,7 +7,6 @@ export default function Navigation() {
         <NavLinkPage to="/">Home page</NavLinkPage>
         <NavLinkPage to="/movies">Movies page</NavLinkPage>
       </Nav>
-      <hr />
     </>
   );
 }
