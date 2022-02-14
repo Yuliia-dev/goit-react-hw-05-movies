@@ -6,7 +6,11 @@ import SearchForm from 'components/SearchForm/SearchForm';
 import SearchMovieItem from 'components/SearchMovieItem/SearchMovieItem';
 import { FormatMovie } from 'components/service/GetFormatData';
 import Loader from 'components/Loader/Loader';
-import { Container, MovieList } from '../HomePage/HomePage.styled';
+import {
+  Container,
+  MovieList,
+  ContainerError,
+} from '../HomePage/HomePage.styled';
 
 const newApi = new ApiService();
 
@@ -61,7 +65,9 @@ export default function MoviesPages() {
         </MovieList>
       </Container>
       {!loading && error && (
-        <div>Sorry, there was an error, please try again</div>
+        <ContainerError>
+          Sorry, there was an error, please try again
+        </ContainerError>
       )}
     </>
   );

@@ -3,7 +3,7 @@ import ApiService from '../../service/movies-api';
 import TrendingMovieItem from 'components/TrendingMovieItem/TrendingMovieItem';
 import { FormatMovie } from 'components/service/GetFormatData';
 import Loader from 'components/Loader/Loader';
-import { Container, Title, MovieList } from './HomePage.styled';
+import { Container, Title, MovieList, ContainerError } from './HomePage.styled';
 
 const newApi = new ApiService();
 
@@ -39,7 +39,9 @@ export default function HomePages() {
         </MovieList>
       </Container>
       {!loading && error && (
-        <div>Sorry, there was an error, please try again</div>
+        <ContainerError>
+          Sorry, there was an error, please try again
+        </ContainerError>
       )}
     </>
   );

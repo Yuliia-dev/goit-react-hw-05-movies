@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import CastList from 'components/CastList/CastList';
 import { FormatCast } from 'components/service/GetFormatData';
-import { CardActors, ActorList } from './Cast.styled';
+import { CardActors, ActorList, ContainerError } from './Cast.styled';
 
 const newApi = new ApiService();
 
@@ -31,7 +31,11 @@ export default function Cast() {
         </ActorList>
       </CardActors>
 
-      {error && <div>Sorry, there was an error, please try again</div>}
+      {error && (
+        <ContainerError>
+          Sorry, there was an error, please try again
+        </ContainerError>
+      )}
     </>
   );
 }

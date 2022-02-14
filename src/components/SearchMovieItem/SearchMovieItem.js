@@ -1,4 +1,5 @@
 import { useLocation } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import {
   MovieItem,
   MovieLink,
@@ -19,3 +20,11 @@ export default function SearchMovieItem({ movie }) {
     </MovieItem>
   );
 }
+
+SearchMovieItem.propTypes = {
+  movie: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    poster_path: PropTypes.string.isRequired,
+  }),
+};
