@@ -16,7 +16,7 @@ export const Title = styled.h1`
   font-size: 36px;
   line-height: 1.62;
   letter-spacing: 0.06em;
-  color: #00584e;
+  color: ${props => props.theme.colors.baseColor};
 `;
 
 export const MovieList = styled.ul`

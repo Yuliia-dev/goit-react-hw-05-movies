@@ -6,8 +6,8 @@ export const MovieItem = styled.li`
   max-width: 300px;
   max-height: 550px;
   list-style: none;
-  background: #e9f1f1;
-  border: 5px solid orange;
+  background: ${props => props.theme.colors.bgGrey};
+  border: 2px solid ${props => props.theme.colors.orange};
   border-radius: 3%;
   margin-bottom: 20px;
 `;
@@ -32,5 +32,5 @@ export const MovieName = styled.p`
   font-size: 18px;
   line-height: 1;
   letter-spacing: 0.06em;
-  color: #00584e;
+  color: ${props => props.theme.colors.baseColor};
 `;

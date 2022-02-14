@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import toast from 'react-hot-toast';
+import PropTypes from 'prop-types';
 import { Form, TitleForm, InputForm, ButtonForm } from './SearchForm.styled';
 
 export default function SearchForm({ onSubmit }) {
@@ -6,9 +8,13 @@ export default function SearchForm({ onSubmit }) {
 
   const handleSubmit = e => {
     e.preventDefault();
+    if (movieName.trim() === '') {
+      return toast.error(
+        `Sorry,there are no movie on request. Please try again`
+      );
+    }
 
     onSubmit(movieName);
-    setMovieName('');
   };
 
   return (
@@ -30,3 +36,6 @@ export default function SearchForm({ onSubmit }) {
     </>
   );
 }
+SearchForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import toast from 'react-hot-toast';
 import ApiService from 'components/service/movies-api';
 import SearchForm from 'components/SearchForm/SearchForm';
 import SearchMovieItem from 'components/SearchMovieItem/SearchMovieItem';
@@ -28,6 +29,13 @@ export default function MoviesPages() {
             const formats = FormatMovie(results);
             setMovies(formats);
             setSearchParams({ query: movieName });
+            if (results.length === 0) {
+              setMovies(null);
+              toast.error(
+                `Sorry,there are no movie on request ${movieName}. Please try again`
+              );
+              return;
+            }
           })
           .catch(error => setError(error))
           .finally(setLoading(false));

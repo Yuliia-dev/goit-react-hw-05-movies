@@ -1,4 +1,5 @@
 import { Outlet } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import {
   ContainerSection,
   CardMovie,
@@ -54,3 +55,18 @@ export default function MovieDetailsPageMarkup({ movie }) {
     </ContainerSection>
   );
 }
+
+MovieDetailsPageMarkup.propTypes = {
+  movie: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    poster_path: PropTypes.string.isRequired,
+    vote_average: PropTypes.number.isRequired,
+    overview: PropTypes.string.isRequired,
+    genres: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired,
+      })
+    ),
+  }),
+};

@@ -16,29 +16,26 @@ export const TitleForm = styled.h2`
   font-size: 30px;
   line-height: 1.62;
   letter-spacing: 0.06em;
-  color: #00584e;
+  color: ${props => props.theme.colors.baseColor};
 `;
 
 export const InputForm = styled.input`
   height: 20px;
-  /* margin: 0; */
   width: 300px;
   padding: 10px;
   border: none;
-  border: 3px solid orange;
-  /* border-radius: 6px; */
-  background-color: white;
+  border: 3px solid ${props => props.theme.colors.orange};
+  background-color: ${props => props.theme.colors.white};
 `;
 
 export const ButtonForm = styled.button`
   min-height: 45px;
   min-width: 40px;
-  background-color: orange;
-  border: 1px solid rgba(27, 31, 35, 0.15);
-  /* border-radius: 6px; */
-  box-shadow: rgba(27, 31, 35, 0.1);
+  background-color: ${props => props.theme.colors.orange};
+  border: 1px solid ${props => props.theme.colors.borderColor};
+  box-shadow: ${props => props.theme.colors.boxShadowColor};
   box-sizing: border-box;
-  color: #00584e;
+  color: ${props => props.theme.colors.baseColor};
   cursor: pointer;
   font-size: 14px;
   font-weight: 600;

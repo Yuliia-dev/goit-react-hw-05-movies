@@ -5,8 +5,8 @@ export const ActorItem = styled.li`
   max-width: 300px;
   max-height: 550px;
   list-style: none;
-  background: #e9f1f1;
-  border: 1px solid white;
+  background: ${props => props.theme.colors.bgGrey};
+  border: 1px solid ${props => props.theme.colors.white};
   border-radius: 3%;
   margin-bottom: 20px;
 `;
@@ -27,7 +27,7 @@ export const ActorName = styled.h2`
   font-size: 24px;
   line-height: 1;
   letter-spacing: 0.06em;
-  color: #00584e;
+  color: ${props => props.theme.colors.baseColor};
 `;
 
 export const ActorRole = styled.h3`
@@ -38,5 +38,5 @@ export const ActorRole = styled.h3`
   font-size: 20px;
   line-height: 1;
   letter-spacing: 0.02em;
-  color: #00584e;
+  color: ${props => props.theme.colors.baseColor};
 `;

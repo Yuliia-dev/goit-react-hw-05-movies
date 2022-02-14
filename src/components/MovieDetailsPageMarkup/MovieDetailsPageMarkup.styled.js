@@ -29,7 +29,7 @@ export const MovieName = styled.h2`
   font-size: 30px;
   line-height: 1, 2;
   letter-spacing: 0.02em;
-  color: #00584e;
+  color: ${props => props.theme.colors.baseColor};
 `;
 
 export const MovieClause = styled.h3`
@@ -40,7 +40,7 @@ export const MovieClause = styled.h3`
   font-size: 24px;
   line-height: 1;
   letter-spacing: 0.02em;
-  color: #00584e;
+  color: ${props => props.theme.colors.baseColor};
 `;
 
 export const MovieInfo = styled.p`
@@ -85,7 +85,7 @@ export const InfoTitle = styled.h3`
   font-size: 30px;
   line-height: 1, 2;
   letter-spacing: 0.02em;
-  color: #00584e;
+  color: ${props => props.theme.colors.baseColor};
 `;
 
 export const InfoList = styled.ul`
@@ -105,7 +105,7 @@ export const InfoItem = styled.li`
   line-height: 20px;
   text-align: center;
   border-radius: 4px;
-  background-color: #00584e;
+  background-color: ${props => props.theme.colors.baseColor};
 `;
 
 export const InfoLink = styled(NavLink)`
@@ -115,7 +115,7 @@ export const InfoLink = styled(NavLink)`
   overflow: hidden;
   text-decoration: none;
   cursor: pointer;
-  color: white;
+  color: ${props => props.theme.colors.white};
   font-style: italic;
   font-weight: 400;
   font-size: 20px;
@@ -123,6 +123,6 @@ export const InfoLink = styled(NavLink)`
   letter-spacing: 0.02em;
 
   &.active {
-    color: orange;
+    color: ${props => props.theme.colors.orange};
   }
 `;

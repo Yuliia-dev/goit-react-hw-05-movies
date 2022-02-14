@@ -11,5 +11,5 @@ export const ContainerReviews = styled.p`
   font-size: 36px;
   line-height: 1.62;
   letter-spacing: 0.06em;
-  color: orange;
+  color: ${props => props.theme.colors.orange};
 `;
