@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import ApiService from '../../service/movies-api';
-import TrendingMovieItem from 'components/TrendingMovieItem/TrendingMovieItem';
-import { FormatMovie } from 'components/service/GetFormatData';
-import Loader from 'components/Loader/Loader';
+import TrendingMovieItem from '../../components/TrendingMovieItem/TrendingMovieItem';
+import { FormatMovie } from '../../service/GetFormatData';
+import Loader from '../../components/Loader/Loader';
 import { Container, Title, MovieList, ContainerError } from './HomePage.styled';
 
 const newApi = new ApiService();

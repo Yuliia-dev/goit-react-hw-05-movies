@@ -6,13 +6,11 @@ export default function CastList({ actor }) {
 
   return (
     <div>
-      <ul>
-        <ActorItem>
-          <ActorImg src={profile_path} alt={name} height="450" width="250" />
-          <ActorName> {name}</ActorName>
-          <ActorRole>Role: {character}</ActorRole>
-        </ActorItem>
-      </ul>
+      <ActorItem>
+        <ActorImg src={profile_path} alt={name} height="450" width="250" />
+        <ActorName> {name}</ActorName>
+        <ActorRole>Role: {character}</ActorRole>
+      </ActorItem>
     </div>
   );
 }

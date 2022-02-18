@@ -1,7 +1,7 @@
-import ApiService from 'components/service/movies-api';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import ReviewsList from 'components/ReviewsList/ReviewsList';
+import ApiService from '../../service/movies-api';
+import ReviewsList from '../../components/ReviewsList/ReviewsList';
 import { ContainerReviews } from './Reviews.styled';
 
 const newApi = new ApiService();

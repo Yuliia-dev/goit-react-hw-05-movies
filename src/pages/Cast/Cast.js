@@ -1,8 +1,8 @@
-import ApiService from 'components/service/movies-api';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import CastList from 'components/CastList/CastList';
-import { FormatCast } from 'components/service/GetFormatData';
+import ApiService from '../../service/movies-api';
+import CastList from '../../components/CastList/CastList';
+import { FormatCast } from '../../service/GetFormatData';
 import { CardActors, ActorList, ContainerError } from './Cast.styled';
 
 const newApi = new ApiService();

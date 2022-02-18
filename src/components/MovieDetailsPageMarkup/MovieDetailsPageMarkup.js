@@ -2,6 +2,7 @@ import { Outlet } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {
   ContainerSection,
+  BackLink,
   CardMovie,
   MovieImg,
   MovieName,
@@ -16,11 +17,12 @@ import {
   InfoLink,
 } from './MovieDetailsPageMarkup.styled';
 
-export default function MovieDetailsPageMarkup({ movie }) {
+export default function MovieDetailsPageMarkup({ movie, location }) {
   const { title, poster_path, vote_average, overview, genres } = movie;
 
   return (
     <ContainerSection>
+      <BackLink to={location?.state?.from ?? '/'}>⬅Back</BackLink>
       <CardMovie>
         <MovieImg src={poster_path} alt={title} height="500" width="300" />
         <div>

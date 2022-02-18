@@ -14,6 +14,7 @@ export default function SearchForm({ onSubmit }) {
       );
     }
 
+    setMovieName('');
     onSubmit(movieName);
   };
 
@@ -26,7 +27,7 @@ export default function SearchForm({ onSubmit }) {
             autoComplete="off"
             placeholder="Enter a movie name"
             type="text"
-            name="movieName"
+            name="query"
             value={movieName}
             onChange={e => setMovieName(e.target.value.toLowerCase())}
           />

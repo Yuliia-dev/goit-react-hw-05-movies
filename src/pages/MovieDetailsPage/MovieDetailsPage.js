@@ -1,10 +1,10 @@
 import { useParams, useLocation } from 'react-router-dom';
-import { useState, useEffect } from 'react';
-import ApiService from 'components/service/movies-api';
+import { useState, useEffect, useRef } from 'react';
+import ApiService from '../../service/movies-api';
 import { FormatMovieDetailsPage } from '../../service/GetFormatData';
-import MovieDetailsPageMarkup from 'components/MovieDetailsPageMarkup/MovieDetailsPageMarkup';
-import Loader from 'components/Loader/Loader';
-import { BackLink, ContainerError } from './MovieDetailsPage.styled';
+import MovieDetailsPageMarkup from '../../components/MovieDetailsPageMarkup/MovieDetailsPageMarkup';
+import Loader from '../../components/Loader/Loader';
+import { ContainerError } from './MovieDetailsPage.styled';
 
 const newApi = new ApiService();
 
@@ -14,6 +14,7 @@ export default function MovieDetailsPages() {
   const [error, setError] = useState(null);
   const { movieId } = useParams();
   const location = useLocation();
+  const ref = useRef(location);
 
   useEffect(() => {
     setLoading(true);
@@ -32,8 +33,12 @@ export default function MovieDetailsPages() {
   return (
     <>
       {loading && <Loader />}
-      <BackLink to={location?.state?.from ?? '/'}>⬅Back</BackLink>
-      {!loading && movie && <MovieDetailsPageMarkup movie={movie} />}
+      {/* <BackLink to={location?.state?.from ?? '/'} state={{ from: location }}>
+        ⬅Back
+      </BackLink> */}
+      {!loading && movie && (
+        <MovieDetailsPageMarkup movie={movie} location={ref.current} />
+      )}
       {!loading && error && (
         <ContainerError>
           Sorry, there was an error, please try again
