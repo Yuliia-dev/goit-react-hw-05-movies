@@ -43,9 +43,12 @@ export default function MoviesPages() {
           }
         })
         .catch(error => setError(error))
-        .finally(setLoading(false));
+        .finally(() => {
+          setLoading(false);
+          setMovieName('');
+        });
     }
-    if (query) {
+    if (query && !movieName) {
       setLoading(true);
       setMovies(null);
       newApi
@@ -83,7 +86,7 @@ export default function MoviesPages() {
               <SearchMovieItem
                 key={movie.id}
                 movie={movie}
-                location={ref.current}
+                locationFrom={ref.current}
               />
             ))}
         </MovieList>

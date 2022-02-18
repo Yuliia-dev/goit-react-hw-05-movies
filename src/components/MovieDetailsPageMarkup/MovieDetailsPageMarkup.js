@@ -17,12 +17,12 @@ import {
   InfoLink,
 } from './MovieDetailsPageMarkup.styled';
 
-export default function MovieDetailsPageMarkup({ movie, location }) {
+export default function MovieDetailsPageMarkup({ movie, pathTo }) {
   const { title, poster_path, vote_average, overview, genres } = movie;
 
   return (
     <ContainerSection>
-      <BackLink to={location?.state?.from ?? '/'}>⬅Back</BackLink>
+      <BackLink to={pathTo}>⬅Back</BackLink>
       <CardMovie>
         <MovieImg src={poster_path} alt={title} height="500" width="300" />
         <div>

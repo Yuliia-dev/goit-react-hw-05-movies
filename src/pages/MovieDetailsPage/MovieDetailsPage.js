@@ -30,14 +30,15 @@ export default function MovieDetailsPages() {
     }, 100);
   }, [movieId]);
 
+  let refTo = ref.current.state?.from
+    ? ref.current.state?.from.pathname + ref.current.state?.from.search
+    : '/';
+
   return (
     <>
       {loading && <Loader />}
-      {/* <BackLink to={location?.state?.from ?? '/'} state={{ from: location }}>
-        ⬅Back
-      </BackLink> */}
       {!loading && movie && (
-        <MovieDetailsPageMarkup movie={movie} location={ref.current} />
+        <MovieDetailsPageMarkup movie={movie} pathTo={refTo} />
       )}
       {!loading && error && (
         <ContainerError>
