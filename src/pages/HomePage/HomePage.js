@@ -14,16 +14,14 @@ export default function HomePages() {
 
   useEffect(() => {
     setLoading(true);
-    setTimeout(() => {
-      newApi
-        .fetchTrendingMovies()
-        .then(({ results }) => {
-          const formats = FormatMovie(results);
-          setMovies(formats);
-        })
-        .catch(error => setError(error))
-        .finally(setLoading(false));
-    }, 100);
+    newApi
+      .fetchTrendingMovies()
+      .then(({ results }) => {
+        const formats = FormatMovie(results);
+        setMovies(formats);
+      })
+      .catch(error => setError(error))
+      .finally(setLoading(false));
   }, []);
 
   return (

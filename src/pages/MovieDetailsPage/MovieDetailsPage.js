@@ -18,16 +18,14 @@ export default function MovieDetailsPages() {
 
   useEffect(() => {
     setLoading(true);
-    setTimeout(() => {
-      newApi
-        .fetchMovieDetails(movieId)
-        .then(results => {
-          const formats = FormatMovieDetailsPage(results);
-          setMovie(formats);
-        })
-        .catch(error => setError(error))
-        .finally(setLoading(false));
-    }, 100);
+    newApi
+      .fetchMovieDetails(movieId)
+      .then(results => {
+        const formats = FormatMovieDetailsPage(results);
+        setMovie(formats);
+      })
+      .catch(error => setError(error))
+      .finally(setLoading(false));
   }, [movieId]);
 
   let refTo = ref.current.state?.from
